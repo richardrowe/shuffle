@@ -5,9 +5,11 @@ This project is a flash card application that intelligently serves you informati
 Built on top of Ionic, this is a hybrid HTML5 application meant to be run via PhoneGap or Cordova, and not as a web application. 
 
 ## Build Status
-[![Build Status](https://travis-ci.org/richardrowe/shuffle.png)](https://travis-ci.org/richardrowe/shuffle)
+[![Build Status](https://travis-ci.org/richardrowe/shuffle.svg?branch=master)](https://travis-ci.org/richardrowe/shuffle)
 
 ## Current Features
+
+# RESTful API to provide the client with decks and cards
 
 ## Soon
 
