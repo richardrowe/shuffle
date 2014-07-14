@@ -1,0 +1,221 @@
+/* Your app's CSS, go crazy, make it your own */
+
+.ionic-logo {
+  display: block;
+  margin: 15px auto;
+  width: 96px;
+  height: 96px;
+}
+
+.pane {
+  background: #61C585;
+}
+
+.bar.bar-transparent {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+}
+
+.bar .title {
+  color: #eee;
+}
+
+.swipe-cards {
+  position: fixed;
+}
+
+.swipe-card {
+  display: none;
+  position: fixed;
+  -webkit-transform: scale(1,1);
+  left: 50%;
+  top: 50%;
+  width: 300px;
+  height: 300px;
+  margin-left: -150px;
+  margin-top: -150px;
+  box-sizing: border-box;
+  background-color: rgb(255,255,255);
+  border-radius: 4px;
+  overflow: hidden;
+  -webkit-animation-fill-mode: forwards;
+
+  font-family: 'PT Serif', serif;
+}
+
+.swipe-card .front {
+  display: block;
+  height: inherit;
+
+  font-size: 80px;
+  line-height: 300px;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.swipe-card .back {
+  display: none;
+  height: inherit;
+
+  font-size: 80px;
+  line-height: 240px;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.swipe-card .title {
+  height: 40px;
+  padding: 5px;
+  line-height: 30px;
+  color: #444;
+}
+.swipe-card .image {
+  overflow: hidden;
+  max-height: 210px;
+}
+.swipe-card .button {
+  border: none;
+}
+.swipe-card .image img {
+  width: 100%;
+  border-radius: 0px 0px 4px 4px;
+}
+
+#start-card {
+  color: #fff;
+  background-color: #30BD8A;
+  line-height: 300px;
+  word-wrap: break-word;
+  border: 6px solid #4CD68E;
+  text-align: center;
+}
+#start-card span {
+  display: inline-block;
+  line-height: 40px;
+  width: 200px;
+  font-size: 30px;
+  vertical-align: middle;
+}
+
+#footer .button {
+  color: #fff;
+}
+
+@-webkit-keyframes bounceIn {
+  0% {
+    -webkit-transform: scale(0,0);
+  }
+  70% {
+    -webkit-transform: scale(1.2,1.2);
+  }
+  100% {
+    -webkit-transform: scale(1,1);
+  }
+}
+
+.swipe-card.pop-in-start {
+  -webkit-transform: scale(0,0);
+}
+.swipe-card.pop-in {
+  -webkit-animation: bounceIn 0.4s ease-out;
+}
+
+
+/* Typography */
+
+body {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 85pt;
+  background-color: #61c585;
+  text-align: center;
+  line-height: 1.2em;
+  padding-top: 70px;
+}
+
+.dashed-shadow {
+  position: relative;
+  top: 8px;
+  left: 8px;
+  display: inline-block;
+  color: #99dab0;
+}
+
+@keyframes dash-animation {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100% 0;
+  }
+}
+.dashed-shadow:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  bottom: -2px;
+  right: -2px;
+  z-index: 1;
+  background-image: -moz-linear-gradient(45deg, #61c585 12.5%, rgba(97, 197, 133, 0) 12.5%, rgba(97, 197, 133, 0) 37.5%, #61c585 37.5%, #61c585 62.5%, rgba(97, 197, 133, 0) 62.5%, rgba(97, 197, 133, 0) 87.5%, #61c585 87.5%);
+  background-image: -webkit-linear-gradient(45deg, #61c585 12.5%, rgba(97, 197, 133, 0) 12.5%, rgba(97, 197, 133, 0) 37.5%, #61c585 37.5%, #61c585 62.5%, rgba(97, 197, 133, 0) 62.5%, rgba(97, 197, 133, 0) 87.5%, #61c585 87.5%);
+  background-image: linear-gradient(45deg, #61c585 12.5%, rgba(97, 197, 133, 0) 12.5%, rgba(97, 197, 133, 0) 37.5%, #61c585 37.5%, #61c585 62.5%, rgba(97, 197, 133, 0) 62.5%, rgba(97, 197, 133, 0) 87.5%, #61c585 87.5%);
+  background-size: 6px 6px;
+}
+
+.dashed-shadow:hover:before {
+  animation: dash-animation 30s infinite linear;
+}
+
+.dashed-shadow:after {
+  z-index: 2;
+  content: attr(data-text);
+  position: absolute;
+  left: -8px;
+  top: -8px;
+  color: white;
+  text-shadow: 3px 3px #61c585;
+}
+
+.logo {
+  font-family: 'Cookie',cursive;
+  font-size: 140pt;
+}
+
+.sorta-block {
+  font-size: 50pt;
+  line-height: 1.1em;
+  -moz-transform: skew(0, -5deg);
+  -ms-transform: skew(0, -5deg);
+  -webkit-transform: skew(0, -5deg);
+  transform: skew(0, -5deg);
+  z-index: 3;
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.sorta {
+  border-top: 4px solid white;
+  border-bottom: 4px solid white;
+  text-transform: uppercase;
+  z-index: 3;
+  font-style: italic;
+}
+
+.hipsterish {
+  font-family: 'Sancreek', cursive;
+  font-size: 70pt;
+}
+
+.dashed-shadow-text {
+  font-size: 140pt;
+  line-height: 0.7em;
+}
+
+.shadow {
+  font-size: 120pt;
+  line-height: 0.8em;
+}

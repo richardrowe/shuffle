@@ -1,0 +1,7 @@
+shuffle_card:
+    type:     rest
+    prefix:   /api
+    resource: "@ShuffleCardBundle/Resources/config/routes.yml"
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

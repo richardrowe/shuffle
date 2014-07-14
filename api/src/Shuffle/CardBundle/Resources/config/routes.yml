@@ -1,0 +1,10 @@
+shuffle_card_Deck:
+    type: rest
+    prefix: /v1
+    resource: "Shuffle\CardBundle\Controller\DeckController"
+    name_prefix:  api_1_ # naming collision
+shuffle_card_Card:
+    type: rest
+    prefix: /v1
+    resource: "Shuffle\CardBundle\Controller\CardController"
+    name_prefix:  api_1_ # naming collision
