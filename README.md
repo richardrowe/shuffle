@@ -8,6 +8,7 @@ Built on top of Ionic, this is a hybrid HTML5 application meant to be run via Ph
 ## Current Features
 
 * RESTful API to provide the client with decks and cards
+* Work in progress, lots of bugs and missing features
 
 ## Soon
 
@@ -21,6 +22,9 @@ Built on top of Ionic, this is a hybrid HTML5 application meant to be run via Ph
 
 ## Screenshots
 
+<img src="http://richardrowe.github.io/images/shuffle-deck-index.png" alt="Shuffle deck index" height="600" width="360">
+<span/>
+<img src="http://richardrowe.github.io/images/shuffle-learn-index.png" alt="Shuffle learn index" height="600" width="360">
 
 ## API Documentation
 

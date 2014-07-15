@@ -7,8 +7,9 @@
   height: 96px;
 }
 
-.pane {
-  background: #61C585;
+.bar.bar-positive {
+  background: #F5755A;
+  border: none;
 }
 
 .bar.bar-transparent {
@@ -41,15 +42,15 @@
   overflow: hidden;
   -webkit-animation-fill-mode: forwards;
 
-  font-family: 'PT Serif', serif;
+  border: 3px solid #F5755A;
 }
 
 .swipe-card .front {
   display: block;
   height: inherit;
 
-  font-size: 80px;
-  line-height: 300px;
+  font-size: 48px;
+  line-height: 250px;
   word-wrap: break-word;
   text-align: center;
 }
@@ -58,7 +59,7 @@
   display: none;
   height: inherit;
 
-  font-size: 80px;
+  font-size: 48px;
   line-height: 240px;
   word-wrap: break-word;
   text-align: center;
@@ -70,16 +71,8 @@
   line-height: 30px;
   color: #444;
 }
-.swipe-card .image {
-  overflow: hidden;
-  max-height: 210px;
-}
 .swipe-card .button {
   border: none;
-}
-.swipe-card .image img {
-  width: 100%;
-  border-radius: 0px 0px 4px 4px;
 }
 
 #start-card {
@@ -123,15 +116,6 @@
 
 
 /* Typography */
-
-body {
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 85pt;
-  background-color: #61c585;
-  text-align: center;
-  line-height: 1.2em;
-  padding-top: 70px;
-}
 
 .dashed-shadow {
   position: relative;

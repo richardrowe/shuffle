@@ -1,7 +1,7 @@
-<ion-view title="Deck">
+<ion-view title="Decks">
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="deck in decks" type="item-text-wrap" href="#/tab/decks/{{deck.id}}">
+      <ion-item ng-repeat="deck in decks" type="item-text-wrap" ng-href="#/decks/{{deck.id}}/learn">
         {{deck.title}}
       </ion-item>
     </ion-list>

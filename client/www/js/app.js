@@ -26,16 +26,16 @@ angular.module('shuffle', ['ionic', 'ionic.contrib.ui.cards', 'shuffle.controlle
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-    .state('deck', {
+    .state('deck-index', {
       url: '/decks',
       templateUrl: 'templates/deck-index.html',
       controller: 'DeckIndexCtrl'
     })
 
-    .state('deck.cards', {
-      url: '/deck/:id/cards',
-      templateUrl: 'templates/card-index.html',
-      controller: 'CardIndexCtrl'
+    .state('learn-index', {
+      url: '/decks/:deckId/learn',
+      templateUrl: 'templates/learn-index.html',
+      controller: 'LearnIndexCtrl'
     })
 
     // setup an abstract state for the tabs directive

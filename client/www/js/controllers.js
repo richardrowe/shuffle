@@ -1,17 +1,13 @@
 angular.module('shuffle.controllers', ['shuffle.services'])
 
-.controller('CardIndexCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
+.controller('LearnIndexCtrl', function($scope, $ionicSwipeCardDelegate, $ionicNavBarDelegate, $rootScope, $stateParams, Card) {
+  
   $rootScope.accepted = 0;
   $rootScope.rejected = 0;
-  var cardTypes = [
-    { front: 'a', back: 'ア' },
-    { front: 'i', back: 'イ' },
-    { front: 'u', back: 'ウ' },
-    { front: 'e', back: 'エ' },
-    { front: 'o', back: 'オ' }
-  ];
 
-  $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+  var cards = Card.query({ deck_id: $stateParams.deckId });
+
+  $scope.cards = cards;
 
   $scope.cardSwiped = function(index) {
     $scope.addCard();
@@ -27,7 +23,7 @@ angular.module('shuffle.controllers', ['shuffle.services'])
   };
 
   $scope.addCard = function() {
-    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    var newCard = cards[Math.floor(Math.random() * cards.length)];
     newCard.id = Math.random();
     $scope.cards.push(angular.extend({}, newCard));
   }
