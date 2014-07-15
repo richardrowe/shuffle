@@ -5,11 +5,12 @@ namespace Shuffle\CardBundle\Tests\Handler;
 use Shuffle\CardBundle\Handler\CardHandler;
 use Shuffle\CardBundle\Model\CardInterface;
 use Shuffle\CardBundle\Entity\Card;
+use Shuffle\CardBundle\Entity\Deck;
 
 class CardHandlerTest extends \PHPUnit_Framework_TestCase
 {
 
-    const DECK_CLASS = 'Shuffle\CardBundle\Tests\Handler\SampleCard';
+    const CARD_CLASS = 'Shuffle\CardBundle\Tests\Handler\SampleCard';
 
     /** @var CardHandler */
     protected $cardHandler;
@@ -31,15 +32,15 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
 
         $this->om->expects($this->any())
             ->method('getRepository')
-            ->with($this->equalTo(static::DECK_CLASS))
+            ->with($this->equalTo(static::CARD_CLASS))
             ->will($this->returnValue($this->repository));
         $this->om->expects($this->any())
             ->method('getClassMetadata')
-            ->with($this->equalTo(static::DECK_CLASS))
+            ->with($this->equalTo(static::CARD_CLASS))
             ->will($this->returnValue($class));
         $class->expects($this->any())
             ->method('getName')
-            ->will($this->returnValue(static::DECK_CLASS));
+            ->will($this->returnValue(static::CARD_CLASS));
     }
 
    public function testAll()
@@ -52,7 +53,7 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
             ->with(array(), null, $limit, $offset)
             ->will($this->returnValue($cards));
 
-        $this->cardHandler = $this->createCardHandler($this->om, static::DECK_CLASS,  $this->formFactory);
+        $this->cardHandler = $this->createCardHandler($this->om, static::CARD_CLASS,  $this->formFactory);
 
         $all = $this->cardHandler->all($limit, $offset);
 
@@ -67,19 +68,23 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo($id))
             ->will($this->returnValue($card));
 
-        $this->cardHandler = $this->createCardHandler($this->om, static::DECK_CLASS,  $this->formFactory);
+        $this->cardHandler = $this->createCardHandler($this->om, static::CARD_CLASS,  $this->formFactory);
 
         $this->cardHandler->get($id);
     }
 
     public function testPost()
     {
-        $title = 'japanese';
+        $front = 'aima';
+        $back = 'interval';
+        $deck = new Deck();
 
-        $parameters = array('title' => $title);
+        $parameters = array('front' => $front, 'back' => $back, 'deck' => $deck);
 
         $card = $this->getCard();
-        $card->setTitle($title);
+        $card->setFront($front);
+        $card->setBack($back);
+        $card->setDeck($deck);
 
         $form = $this->getMock('Shuffle\CardBundle\Tests\FormInterface'); //'Symfony\Component\Form\FormInterface' bugs on iterator
         $form->expects($this->once())
@@ -96,7 +101,7 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->will($this->returnValue($form));
 
-        $this->cardHandler = $this->createCardHandler($this->om, static::DECK_CLASS, $this->formFactory);
+        $this->cardHandler = $this->createCardHandler($this->om, static::CARD_CLASS, $this->formFactory);
         $cardObject = $this->cardHandler->post($parameters);
 
         $this->assertEquals($cardObject, $card);
@@ -107,12 +112,16 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testPostShouldRaiseException()
     {
-        $title = 'japanese';
+        $front = 'aima';
+        $back = 'interval';
+        $deck = new Deck();
 
-        $parameters = array('title' => $title);
+        $parameters = array('front' => $front, 'back' => $back, 'deck' => $deck);
 
         $card = $this->getCard();
-        $card->setTitle($title);
+        $card->setFront($front);
+        $card->setBack($back);
+        $card->setDeck($deck);
 
         $form = $this->getMock('Shuffle\CardBundle\Tests\FormInterface'); //'Symfony\Component\Form\FormInterface' bugs on iterator
         $form->expects($this->once())
@@ -126,18 +135,22 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->will($this->returnValue($form));
 
-        $this->cardHandler = $this->createCardHandler($this->om, static::DECK_CLASS,  $this->formFactory);
+        $this->cardHandler = $this->createCardHandler($this->om, static::CARD_CLASS,  $this->formFactory);
         $this->cardHandler->post($parameters);
     }
 
     public function testPut()
     {
-        $title = 'title1';
+        $front = 'aima';
+        $back = 'interval';
+        $deck = new Deck();
 
-        $parameters = array('title' => $title);
+        $parameters = array('front' => $front, 'back' => $back, 'deck' => $deck);
 
         $card = $this->getCard();
-        $card->setTitle($title);
+        $card->setFront($front);
+        $card->setBack($back);
+        $card->setDeck($deck);
 
         $form = $this->getMock('Shuffle\CardBundle\Tests\FormInterface'); //'Symfony\Component\Form\FormInterface' bugs on iterator
         $form->expects($this->once())
@@ -154,7 +167,7 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->will($this->returnValue($form));
 
-        $this->cardHandler = $this->createCardHandler($this->om, static::DECK_CLASS,  $this->formFactory);
+        $this->cardHandler = $this->createCardHandler($this->om, static::CARD_CLASS,  $this->formFactory);
         $cardObject = $this->cardHandler->put($card, $parameters);
 
         $this->assertEquals($cardObject, $card);
@@ -162,12 +175,16 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testPatch()
     {
-        $title = 'title1';
+        $front = 'aima';
+        $back = 'interval';
+        $deck = new Deck();
 
-        $parameters = array('title' => $title);
+        $parameters = array('front' => $front, 'deck' => $deck);
 
         $card = $this->getCard();
-        $card->setTitle($title);
+        $card->setFront($front);
+        $card->setBack($back);
+        $card->setDeck($deck);
 
         $form = $this->getMock('Shuffle\CardBundle\Tests\FormInterface'); //'Symfony\Component\Form\FormInterface' bugs on iterator
         $form->expects($this->once())
@@ -184,7 +201,7 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->will($this->returnValue($form));
 
-        $this->cardHandler = $this->createCardHandler($this->om, static::DECK_CLASS,  $this->formFactory);
+        $this->cardHandler = $this->createCardHandler($this->om, static::CARD_CLASS,  $this->formFactory);
         $cardObject = $this->cardHandler->patch($card, $parameters);
 
         $this->assertEquals($cardObject, $card);
@@ -208,7 +225,7 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
 
     protected function getCard()
     {
-        $cardClass = static::DECK_CLASS;
+        $cardClass = static::CARD_CLASS;
 
         return new $cardClass();
     }

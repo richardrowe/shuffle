@@ -51,13 +51,14 @@ class DeckControllerTest extends WebTestCase
         $fixtures = array('Shuffle\CardBundle\Tests\Fixtures\Entity\LoadDeckData');
         $this->loadFixtures($fixtures);
         $decks = LoadDeckData::$decks;
-        $page = array_pop($decks);
+        $deck = array_pop($decks);
 
         $this->client->request(
             'GET', 
             sprintf('/api/v1/decks/%d.json', 
-            $page->getId()), array('ACCEPT' => 'application/json')
+            $deck->getId()), array('ACCEPT' => 'application/json')
         );
+        
         $this->assertEquals(
             200, 
             $this->client->getResponse()->getStatusCode(), 
@@ -66,18 +67,18 @@ class DeckControllerTest extends WebTestCase
 
         $this->client->request(
             'PUT',
-            sprintf('/api/v1/decks/%d.json', $page->getId()),
+            sprintf('/api/v1/decks/%d.json', $deck->getId()),
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
-            '{"title":"abc"}'
+            '{"title":"modify existing deck"}'
         );
 
         $this->assertJsonResponse($this->client->getResponse(), 204, false);
         $this->assertTrue(
             $this->client->getResponse()->headers->contains(
                 'Location',
-                sprintf('http://localhost/api/v1/decks/%d.json', $page->getId())
+                sprintf('http://localhost/api/v1/decks/%d.json', $deck->getId())
             ),
             $this->client->getResponse()->headers
         );
@@ -111,11 +112,11 @@ class DeckControllerTest extends WebTestCase
         $fixtures = array('Shuffle\CardBundle\Tests\Fixtures\Entity\LoadDeckData');
         $this->loadFixtures($fixtures);
         $decks = LoadDeckData::$decks;
-        $page = array_pop($decks);
+        $deck = array_pop($decks);
 
         $this->client->request(
             'PATCH',
-            sprintf('/api/v1/decks/%d.json', $page->getId()),
+            sprintf('/api/v1/decks/%d.json', $deck->getId()),
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
@@ -126,7 +127,7 @@ class DeckControllerTest extends WebTestCase
         $this->assertTrue(
             $this->client->getResponse()->headers->contains(
                 'Location',
-                sprintf('http://localhost/api/v1/decks/%d.json', $page->getId())
+                sprintf('http://localhost/api/v1/decks/%d.json', $deck->getId())
             ),
             $this->client->getResponse()->headers
         );

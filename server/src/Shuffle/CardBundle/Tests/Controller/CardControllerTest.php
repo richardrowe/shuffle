@@ -4,6 +4,7 @@ namespace Shuffle\CardBundle\Tests\Controller;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase as WebTestCase;
 use Shuffle\CardBundle\Tests\Fixtures\Entity\LoadCardData;
+use Shuffle\CardBundle\Tests\Fixtures\Entity\LoadDeckData;
 
 class CardControllerTest extends WebTestCase
 {
@@ -19,13 +20,18 @@ class CardControllerTest extends WebTestCase
 
     public function testJsonPostCardAction()
     {
+        $fixtures = array('Shuffle\CardBundle\Tests\Fixtures\Entity\LoadCardData');
+        $this->loadFixtures($fixtures);
+        $cards = LoadCardData::$cards;
+        $card = array_pop($cards);
+
         $this->client->request(
             'POST',
-            '/api/v1/cards.json',
+            sprintf('/api/v1/decks/%d/cards.json', $card->getDeck()->getId()),
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
-            '{"title":"title1"}'
+            '{"front": "aima", "back": "interval"}'
         );
 
         $this->assertJsonResponse($this->client->getResponse(), 201, false);
@@ -33,14 +39,19 @@ class CardControllerTest extends WebTestCase
 
 	public function testJsonPostCardActionShouldReturn400WithBadParameters()
 	{
+        $fixtures = array('Shuffle\CardBundle\Tests\Fixtures\Entity\LoadCardData');
+        $this->loadFixtures($fixtures);
+        $cards = LoadCardData::$cards;
+        $card = array_pop($cards);
+
 	    $this->client = static::createClient();
 	    $this->client->request(
 	        'POST',
-	        '/api/v1/cards.json',
+	        sprintf('/api/v1/decks/%d/cards.json', $card->getDeck()->getId()),
 	        array(),
 	        array(),
 	        array('CONTENT_TYPE' => 'application/json'),
-	        '{"bad":"parameters"}'
+            '{"fronts": "aima", "back": "interval"}'
 	    );
 
 	    $this->assertJsonResponse($this->client->getResponse(), 400, false);
@@ -51,12 +62,12 @@ class CardControllerTest extends WebTestCase
         $fixtures = array('Shuffle\CardBundle\Tests\Fixtures\Entity\LoadCardData');
         $this->loadFixtures($fixtures);
         $cards = LoadCardData::$cards;
-        $page = array_pop($cards);
+        $card = array_pop($cards);
 
         $this->client->request(
             'GET', 
-            sprintf('/api/v1/cards/%d.json', 
-            $page->getId()), array('ACCEPT' => 'application/json')
+            sprintf('/api/v1/decks/%d/cards/%d.json', 
+            $card->getDeck()->getId(), $card->getId()), array('ACCEPT' => 'application/json')
         );
         $this->assertEquals(
             200, 
@@ -66,18 +77,18 @@ class CardControllerTest extends WebTestCase
 
         $this->client->request(
             'PUT',
-            sprintf('/api/v1/cards/%d.json', $page->getId()),
+            sprintf('/api/v1/decks/%d/cards/%d.json', $card->getDeck()->getId(), $card->getId()),
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
-            '{"title":"abc"}'
+            '{"front": "aima", "back": "interval"}'
         );
 
         $this->assertJsonResponse($this->client->getResponse(), 204, false);
         $this->assertTrue(
             $this->client->getResponse()->headers->contains(
                 'Location',
-                sprintf('http://localhost/api/v1/cards/%d.json', $page->getId())
+                sprintf('http://localhost/api/v1/decks/%d/cards/%d.json', $card->getDeck()->getId(), $card->getId())
             ),
             $this->client->getResponse()->headers
         );
@@ -85,8 +96,13 @@ class CardControllerTest extends WebTestCase
 
     public function testJsonPutCardActionShouldCreate()
     {
+        $fixtures = array('Shuffle\CardBundle\Tests\Fixtures\Entity\LoadCardData');
+        $this->loadFixtures($fixtures);
+        $cards = LoadCardData::$cards;
+        $card = array_pop($cards);
+
         $id = 0;
-        $this->client->request('GET', sprintf('/api/v1/cards/%d.json', $id), array('ACCEPT' => 'application/json'));
+        $this->client->request('GET', sprintf('/api/v1/decks/%d/cards/%d.json', $card->getDeck()->getId(), $id), array('ACCEPT' => 'application/json'));
 
         $this->assertEquals(
             404, 
@@ -96,11 +112,11 @@ class CardControllerTest extends WebTestCase
 
         $this->client->request(
             'PUT',
-            sprintf('/api/v1/cards/%d.json', $id),
+            sprintf('/api/v1/decks/%d/cards/%d.json', $card->getDeck()->getId(), $id),
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
-            '{"title":"abc"}'
+            '{"front": "aima", "back": "interval"}'
         );
 
         $this->assertJsonResponse($this->client->getResponse(), 201, false);
@@ -111,22 +127,22 @@ class CardControllerTest extends WebTestCase
         $fixtures = array('Shuffle\CardBundle\Tests\Fixtures\Entity\LoadCardData');
         $this->loadFixtures($fixtures);
         $cards = LoadCardData::$cards;
-        $page = array_pop($cards);
+        $card = array_pop($cards);
 
         $this->client->request(
             'PATCH',
-            sprintf('/api/v1/cards/%d.json', $page->getId()),
+            sprintf('/api/v1/decks/%d/cards/%d.json', $card->getDeck()->getId(), $card->getId()),
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
-            '{"title":"we only have one field"}'
+            '{"front": "aima"}'
         );
 
         $this->assertJsonResponse($this->client->getResponse(), 204, false);
         $this->assertTrue(
             $this->client->getResponse()->headers->contains(
                 'Location',
-                sprintf('http://localhost/api/v1/cards/%d.json', $page->getId())
+                sprintf('http://localhost/api/v1/decks/%d/cards/%d.json', $card->getDeck()->getId(), $card->getId())
             ),
             $this->client->getResponse()->headers
         );

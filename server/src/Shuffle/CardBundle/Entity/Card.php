@@ -25,9 +25,16 @@ class Card implements CardInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="front", type="string", length=255)
      */
-    private $title;
+    private $front;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="back", type="string", length=255)
+     */
+    private $back;
 
     /**
      * @ORM\ManyToOne(targetEntity="Deck", inversedBy="cards")
@@ -43,29 +50,6 @@ class Card implements CardInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     * @return Card
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**
@@ -89,5 +73,51 @@ class Card implements CardInterface
     public function getDeck()
     {
         return $this->deck;
+    }
+
+    /**
+     * Set front
+     *
+     * @param string $front
+     * @return Card
+     */
+    public function setFront($front)
+    {
+        $this->front = $front;
+
+        return $this;
+    }
+
+    /**
+     * Get front
+     *
+     * @return string 
+     */
+    public function getFront()
+    {
+        return $this->front;
+    }
+
+    /**
+     * Set back
+     *
+     * @param string $back
+     * @return Card
+     */
+    public function setBack($back)
+    {
+        $this->back = $back;
+
+        return $this;
+    }
+
+    /**
+     * Get back
+     *
+     * @return string 
+     */
+    public function getBack()
+    {
+        return $this->back;
     }
 }

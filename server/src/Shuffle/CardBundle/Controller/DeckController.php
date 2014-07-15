@@ -252,7 +252,9 @@ class DeckController extends FOSRestController
      */
     protected function getOr404($id)
     {
-        if (!($deck = $this->container->get('shuffle_card.deck.handler')->get($id))) {
+        $deck = $this->container->get('shuffle_card.deck.handler')->get($id);
+
+        if (!$deck instanceof DeckInterface) {
             throw new NotFoundHttpException(sprintf('The resource \'%s\' was not found.', $id));
         }
 

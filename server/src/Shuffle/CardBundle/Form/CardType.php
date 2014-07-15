@@ -15,7 +15,9 @@ class CardType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('front')
+            ->add('back')
+            ->add('deck')
         ;
     }
     

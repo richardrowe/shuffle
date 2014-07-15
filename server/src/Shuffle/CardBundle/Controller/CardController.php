@@ -40,10 +40,11 @@ class CardController extends FOSRestController
      *
      * @param Request               $request      the request object
      * @param ParamFetcherInterface $paramFetcher param fetcher service
+     * @param int     $deck_id      the deck id
      *
      * @return array
      */
-    public function getCardsAction(Request $request, ParamFetcherInterface $paramFetcher)
+    public function getCardsAction(Request $request, ParamFetcherInterface $paramFetcher, $deck_id)
     {
         $offset = $paramFetcher->get('offset');
         $offset = null == $offset ? 0 : $offset;
@@ -68,13 +69,14 @@ class CardController extends FOSRestController
      * @Annotations\View(templateVar="card")
      *
      * @param Request $request the request object
+     * @param int     $deck_id      the deck id
      * @param int     $id      the card id
      *
      * @return array
      *
      * @throws NotFoundHttpException when card not exist
      */
-    public function getCardAction($id)
+    public function getCardAction($deck_id, $id)
     {
         $card = $this->getOr404($id);
 
@@ -101,10 +103,11 @@ class CardController extends FOSRestController
      * )
      *
      * @param Request $request the request object
+     * @param int     $deck_id      the deck id
      *
      * @return FormTypeInterface|View
      */
-    public function postCardAction(Request $request)
+    public function postCardAction(Request $request, $deck_id)
     {
        try {
            $newCard = $this->container->get('shuffle_card.card.handler')->post(
@@ -135,9 +138,11 @@ class CardController extends FOSRestController
      *
      * @Annotations\View()
      *
+     * @param int     $deck_id      the deck id
+     * 
      * @return FormTypeInterface
      */
-    public function newCardAction()
+    public function newCardAction($deck_id)
     {
         return $this->createForm(new CardType());
     }
@@ -161,13 +166,14 @@ class CardController extends FOSRestController
      * )
      *
      * @param Request $request the request object
+     * @param int     $deck_id      the deck id
      * @param int     $id      the card id
      *
      * @return FormTypeInterface|View
      *
      * @throws NotFoundHttpException when card not exist
      */
-    public function putCardAction(Request $request, $id)
+    public function putCardAction(Request $request, $deck_id, $id)
     {
         try {
             if (!($card = $this->container->get('shuffle_card.card.handler')->get($id))) {
@@ -214,13 +220,14 @@ class CardController extends FOSRestController
      * )
      *
      * @param Request $request the request object
+     * @param int     $deck_id      the deck id
      * @param int     $id      the card id
      *
      * @return FormTypeInterface|View
      *
      * @throws NotFoundHttpException when card not exist
      */
-    public function patchCardAction(Request $request, $id)
+    public function patchCardAction(Request $request, $deck_id, $id)
     {
         try {
             $card = $this->container->get('shuffle_card.card.handler')->patch(
@@ -252,7 +259,9 @@ class CardController extends FOSRestController
      */
     protected function getOr404($id)
     {
-        if (!($card = $this->container->get('shuffle_card.card.handler')->get($id))) {
+        $card = $this->container->get('shuffle_card.card.handler')->get($id);
+        
+        if (!$card instanceof CardInterface) {
             throw new NotFoundHttpException(sprintf('The resource \'%s\' was not found.', $id));
         }
 
