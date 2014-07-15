@@ -1,15 +1,13 @@
-# Shuffle
+ Shuffle [![Build Status](https://travis-ci.org/richardrowe/shuffle.svg?branch=master)](https://travis-ci.org/richardrowe/shuffle)
+========
 
 This project is a flash card application that intelligently serves you information you want to remember.
 
 Built on top of Ionic, this is a hybrid HTML5 application meant to be run via PhoneGap or Cordova, and not as a web application. 
 
-## Build Status
-[![Build Status](https://travis-ci.org/richardrowe/shuffle.svg?branch=master)](https://travis-ci.org/richardrowe/shuffle)
-
 ## Current Features
 
-# RESTful API to provide the client with decks and cards
+* RESTful API to provide the client with decks and cards
 
 ## Soon
 
@@ -27,6 +25,12 @@ Built on top of Ionic, this is a hybrid HTML5 application meant to be run via Ph
 ## API Documentation
 
 http://localhost/api/doc
+
+Bug tracking
+------------
+
+Shuffle uses [GitHub issues](https://github.com/richardrowe/shuffle/issues).
+If you have found bug, please create an issue.
 
 ## Credits
 
