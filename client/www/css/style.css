@@ -1,7 +1,8 @@
-/* Your app's CSS, go crazy, make it your own */
+/* Shuffle */
 
 .scroll-content {
   background: url('../img/bg.png') no-repeat left center fixed;
+  /* iOS 7 simulator background resize sluggish */
   /*-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -17,25 +18,23 @@
 }
 
 .bar.bar-positive {
-  background: #d7d7d7; /* Old browsers */
-  background: -moz-linear-gradient(top, #d7d7d7 0%, #f7f7f7 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d7d7d7), color-stop(100%,#f7f7f7)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #d7d7d7 0%,#f7f7f7 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #d7d7d7 0%,#f7f7f7 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #d7d7d7 0%,#f7f7f7 100%); /* IE10+ */
-  background: linear-gradient(to bottom, #d7d7d7 0%,#f7f7f7 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7d7d7', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-9 */
-  border-color: #ccc;
+  background: #fff;
+  border: none;
+}
+
+.bar.bar-positive .title {
+  color: #C54361;
+  font-weight: normal;
+}
+
+.bar.bar-positive .button {
+  color: #C54361;
 }
 
 .bar.bar-transparent {
   background-color: transparent;
   background-image: none;
   border-color: none;
-}
-
-.bar .title {
-  color: #eee;
 }
 
 .swipe-cards {
@@ -58,7 +57,10 @@
   overflow: hidden;
   -webkit-animation-fill-mode: forwards;
 
-  border: 3px solid #F5755A;
+  -webkit-box-shadow: 2px 2px 10px -4px rgba(0,0,0,0.5);
+  -moz-box-shadow: 2px 2px 10px -4px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 10px -4px rgba(0,0,0,0.5);
+
 }
 
 .swipe-card .front {
