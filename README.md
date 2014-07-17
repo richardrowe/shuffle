@@ -22,9 +22,9 @@ Built on top of Ionic, this is a hybrid HTML5 application meant to be run via Ph
 
 ## Screenshots
 
-<img src="http://richardrowe.github.io/images/shuffle-deck-index.png" alt="Shuffle deck index" height="600" width="360">
+<img src="https://github.com/richardrowe/shuffle/raw/master/client/www/img/screens/shuffle-deck-index2.png" alt="Shuffle deck index" height="600" width="360">
 <span/>
-<img src="http://richardrowe.github.io/images/shuffle-learn-index.png" alt="Shuffle learn index" height="600" width="360">
+<img src="https://github.com/richardrowe/shuffle/raw/master/client/www/img/screens/shuffle-learn-index2.png" alt="Shuffle learn index" height="600" width="360">
 
 ## API Documentation
 
