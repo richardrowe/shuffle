@@ -1,20 +1,20 @@
 <ion-view title="Learn">
-  <ion-content scroll="false">
+  <ion-content scroll="false" class="flexbox">
     <swipe-cards>
-      <swipe-card on-swipe="cardSwiped()" id="start-card">
+      <!--<swipe-card on-swipe="cardSwiped()" id="start-card">
         <div class="front">
           Swipe left or right for a new card. Tap to flip
         </div>
         <div class="back">
          Tap to flip back. Swipe left or right for a new card.
         </div>
-      </swipe-card>
+      </swipe-card>-->
       <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
         <div class="front">
-          {{card.front}}
+          <span>{{card.front}}</span>
         </div>
         <div ng-controller="CardCtrl" class="back">
-          {{card.back}}
+          <span>{{card.back}}</span>
 
           <div class="button-bar">
             <button class="button button-clear button-positive" ng-click="reject()">No</button>

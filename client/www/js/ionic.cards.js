@@ -45,6 +45,7 @@
       this.beforeCardShow(card);
 
       card.transitionIn(this.cardAnimation);
+
       setTimeout(function() {
         card.disableTransition(self.cardAnimation);
       }, this.cardPopInDuration + 100);
@@ -154,6 +155,7 @@
       this.el.classList.add(animationClass + '-start');
       this.el.classList.add(animationClass);
       this.el.style.display = 'block';
+
       setTimeout(function() {
         self.el.classList.remove(animationClass + '-start');
       }, 100);
