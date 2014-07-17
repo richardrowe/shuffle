@@ -32,9 +32,9 @@ class CardHandler implements CardHandlerInterface
      *
      * @return array
      */
-    public function all($limit = 5, $offset = 0)
+    public function all($deck_id, $limit = 5, $offset = 0)
     {
-        return $this->repository->findBy(array(), null, $limit, $offset);
+        return $this->repository->findBy(array('deck' => $deck_id), null, $limit, $offset);
     }
 
     /**

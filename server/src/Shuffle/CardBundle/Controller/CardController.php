@@ -50,7 +50,7 @@ class CardController extends FOSRestController
         $offset = null == $offset ? 0 : $offset;
         $limit = $paramFetcher->get('limit');
 
-        return $this->container->get('shuffle_card.card.handler')->all($limit, $offset);
+        return $this->container->get('shuffle_card.card.handler')->all($deck_id, $limit, $offset);
     }
 
     /**

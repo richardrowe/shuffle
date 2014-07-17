@@ -14,7 +14,7 @@ interface CardHandlerInterface
      *
      * @return array
      */
-    public function all($limit = 5, $offset = 0);
+    public function all($deck_id, $limit = 5, $offset = 0);
 
     /**
      * Get a Card.

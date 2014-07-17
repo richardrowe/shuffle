@@ -4,7 +4,7 @@ angular.module('shuffle.controllers', ['shuffle.services'])
   
   $rootScope.accepted = 0;
   $rootScope.rejected = 0;
-
+  
   var cards = Card.query({ deck_id: $stateParams.deckId });
 
   $scope.cards = cards;
