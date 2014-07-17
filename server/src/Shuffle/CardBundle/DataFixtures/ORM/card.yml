@@ -1,0 +1,46 @@
+Shuffle\CardBundle\Entity\Card:
+    deck_japanese (template):
+        deck: @deck1->id
+    deck_korean (template):
+        deck: @deck2->id
+    deck_french (template):
+        deck: @deck3->id
+    card1 (extends deck_japanese):
+        front: 'おはよう'
+        back: 'Good morning'
+    card2 (extends deck_japanese):
+        front: 'こんにちは'
+        back: 'Good afternoon'
+    card3 (extends deck_japanese):
+        front: 'こんばんは'
+        back: 'Good evening'
+    card4 (extends deck_japanese):
+        front: 'おやすみなさい'
+        back: 'Good night'
+    card5 (extends deck_japanese):
+        front: 'さよなら'
+        back: 'Good bye'
+    card6 (extends deck_korean):
+        front: '환영합니다'
+        back: 'Welcome'
+    card7 (extends deck_korean):
+        front: '안녕하십니까'
+        back: 'Good morning'
+    card8 (extends deck_korean):
+        front: '잘자'
+        back: 'Good night'
+    card9 (extends deck_korean):
+        front: '안녕'
+        back: 'Good bye'
+    card10 (extends deck_french):
+        front: 'Bonjour'
+        back: 'Good morning'
+    card11 (extends deck_french):
+        front: 'Bon après-midi'
+        back: 'Good afternoon'
+    card12 (extends deck_french):
+        front: 'Bonsoir'
+        back: 'Good evening'
+    card13 (extends deck_french):
+        front: 'Au revoir'
+        back: 'Good bye'

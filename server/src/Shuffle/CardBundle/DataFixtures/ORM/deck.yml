@@ -1,0 +1,7 @@
+Shuffle\CardBundle\Entity\Deck:
+    deck1:
+        title: 'Greetings in Japanese'
+    deck2:
+        title: 'Greetings in Korean'
+    deck3:
+        title: 'Greetings in French'
