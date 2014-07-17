@@ -30,6 +30,16 @@
   border-color: none;
 }
 
+.item {
+  background-color: transparent;
+  border-color: #f67176;
+  color: #fff;
+}
+
+.item-complex .item-content {
+  background-color: transparent;
+}
+
 .swipe-cards {
 
 }
